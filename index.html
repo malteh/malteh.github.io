@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        body {
+          background-color: black;
+        }
+        
+        .txt {
+          text-align:center;
+          /* line-height: 1366px;
+          padding-top: 100px;
+          vertical-align: middle; */
+          font-size: 250px;
+          color: white;
+          font-family: "Lucida Console", "Courier New", monospace;
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
+        </style>
 <script>
 function getUrlParameterByName(name, url)
 {
@@ -13,14 +34,24 @@ function getUrlParameterByName(name, url)
 }
 
 var tzOffset = parseInt(getUrlParameterByName('tz-offset'));
+if (!tzOffset) tzOffset = 0;
+
+function weekday(dd) {
+  return ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"][dd]
+}
 
 function startTime() {
   var today = new Date();
   var h = (today.getHours() + tzOffset) % 24;
   var m = today.getMinutes();
+  var ddd = today.getDay();
+  ddd = weekday(ddd);
+  var d = today.getDate();
+  var mm = today.getMonth();
+  var y = today.getFullYear();
   m = checkTime(m);
   document.getElementById('txt').innerHTML =
-  h + ":" + m;
+  h + ":" + m + "<br />" + ddd + "<br />" + d + "." + mm + "." + y;
   var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
@@ -29,7 +60,7 @@ function checkTime(i) {
 }
 </script>
 </head>
-<body style="background-color:black;" onload="startTime()">
-    <div style="text-align:center;line-height: 1366px;vertical-align: middle;font-size: 250px;color: white;" id="txt"></div>
+<body onload="startTime()">
+    <div class="txt" id="txt"></div>
 </body>
 </html>
