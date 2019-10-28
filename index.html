@@ -6,13 +6,7 @@
           background-color: black;
         }
         
-        .txt {
-          text-align:center;
-          /* line-height: 1366px;
-          padding-top: 100px;
-          vertical-align: middle; */
-          font-size: 250px;
-          color: white;
+        .content {
           font-family: "Lucida Console", "Courier New", monospace;
           width: 100%;
           position: absolute;
@@ -20,6 +14,24 @@
           -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
           transform: translateY(-50%);
+        }
+        
+        .time {
+          text-align:center;
+          font-size: 200px;
+          color: white;
+        }
+        
+        .day {
+          text-align:center;
+          font-size: 150px;
+          color: white;
+        }
+
+        .date {
+          text-align:center;
+          font-size: 100px;
+          color: white;
         }
         </style>
 <script>
@@ -50,8 +62,9 @@ function startTime() {
   var mm = today.getMonth();
   var y = today.getFullYear();
   m = checkTime(m);
-  document.getElementById('txt').innerHTML =
-  h + ":" + m + "<br />" + ddd + "<br />" + d + "." + mm + "." + y;
+  document.getElementById('time').innerHTML = h + ":" + m;
+  document.getElementById('day').innerHTML = ddd;
+  document.getElementById('date').innerHTML = d + "." + mm + "." + y;
   var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
@@ -61,6 +74,10 @@ function checkTime(i) {
 </script>
 </head>
 <body onload="startTime()">
-    <div class="txt" id="txt"></div>
+  <div class="content" id="content">
+    <div class="time" id="time"></div>
+    <div class="day" id="day"></div>
+    <div class="date" id="date"></div>
+  </div>
 </body>
 </html>
