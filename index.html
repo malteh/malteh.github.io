@@ -24,7 +24,7 @@
         
         .day {
           text-align:center;
-          font-size: 150px;
+          font-size: 120px;
           color: white;
         }
 
@@ -59,7 +59,7 @@ function startTime() {
   var ddd = today.getDay();
   ddd = weekday(ddd);
   var d = today.getDate();
-  var mm = today.getMonth();
+  var mm = today.getMonth() + 1;
   var y = today.getFullYear();
   m = checkTime(m);
   document.getElementById('time').innerHTML = h + ":" + m;
